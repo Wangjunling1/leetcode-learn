@@ -1,1 +1,5 @@
-# leetcode_-learn
+# leetcode代码题解
+  
+    主要用来学习算法和代码实现，并将自身理解注释到代码中
+    
+    分别用go和python编码
