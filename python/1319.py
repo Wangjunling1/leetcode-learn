@@ -1,3 +1,8 @@
+"""
+并查集思路解题
+"""
+
+
 # 并查集模板
 class UnionFind:
     def __init__(self, n: int):
