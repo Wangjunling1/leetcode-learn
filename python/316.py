@@ -1,3 +1,7 @@
+"""
+去重复并记录 字典序
+"""
+
 
 def main(s: str):
     dict_data={}
