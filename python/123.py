@@ -13,16 +13,16 @@ def aaa(l):
     # num = 0
     print(l_nums)
     for i1,i2 in l_nums:
-        
-    # if l_nums:
-    #     l_nums.sort()
-    #     for i in range(1,len(l_nums)+1):
-    #
-    #         num+=l_nums[-i]
-    #         if i==2:
-    #             break
-    # print(num)
-    # print(a)
+
+        if l_nums:
+            l_nums.sort()
+            for i in range(1,len(l_nums)+1):
+
+                num+=l_nums[-i]
+                if i==2:
+                    break
+        print(num)
+        print(a)
 if __name__ == '__main__':
     # aaa([3,3,5,0,0,3,1,4])
     # aaa([3,2,5,0,0,3,1,4])
