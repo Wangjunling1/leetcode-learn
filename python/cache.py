@@ -7,7 +7,7 @@ class LruCache:
     借助OrderedDict实现缓存。
     该对象使用有序字典进行操作。使用了OrderedDict的特性，有序队列。
     orderedDic，底层使用了双向链表和hashmap 进行数据有序操作。
-    使用双向链表，记录有序性。hashman实唯一性。
+    使用双向链表，记录有序性。hashmap实现唯一性。
     """
 
     def __init__(self, long_max=100):
