@@ -97,28 +97,22 @@ func F3254(k int, nums []int) []int {
 	return nums[:n-k+1]
 }
 
+// TODO 优化 算法有问题 没有时间
 func F3254V2(k int, nums []int) []int {
 	cnt := 0
 	idx := 0
 	n := len(nums)
 	for i, v := range nums {
-		if i == 0 || v == nums[i-1]+1 {
-			cnt++
-		} else {
+		if i == 0 || v != nums[i-1]+1 {
 			cnt = 1
-			nums[idx] = -1
-			idx++
+		} else {
+			cnt++
 		}
 
-		if cnt >= k && n > idx {
+		if cnt >= k {
 			nums[idx] = v
 			idx++
 		}
 	}
-	//for idx < len(nums) {
-	//	nums[idx] = -1
-	//	idx++
-	//}
-
 	return nums
 }
