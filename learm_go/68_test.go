@@ -48,6 +48,7 @@ import (
 //输出:
 //[
 //  "Science  is  what we",
+//   Science  is  what we
 //  "understand      well",
 //  "enough to explain to",
 //  "a  computer.  Art is",
@@ -68,52 +69,78 @@ func Test68(t *testing.T) {
 
 	//fmt.Println(9 / 3)
 
-	fmt.Println(Aligning68("Science is what", 20, 4))
-	fmt.Println(len(Aligning68("Science is what", 20, 4)))
-	fmt.Println(Aligning68("a computer. Art is", 20, 4))
+	//fmt.Println(Aligning68("Science is what", 20, 4))
+	//fmt.Println(len(Aligning68("Science is what", 20, 4)))
+	//fmt.Println(Aligning68("a computer. Art is  ", 20, 4))
+	//fmt.Println(Aligning68("understand well", 20, 4))
+	//fmt.Println(Aligning68("     understand well", 20, 3))
+
+	fmt.Println(F68([]string{"Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"}, 20))
+	fmt.Println(F68([]string{"What", "must", "be", "acknowledgment", "shall", "be"}, 16))
+	fmt.Println(F68([]string{"This", "is", "an", "example", "of", "text", "justification."}, 16))
 
 }
 func F68(words []string, maxWidth int) []string {
-	// todo
+
 	cnt := ""
 	res := make([]string, 0)
 	for i := range words {
-		cnt += words[i] + " "
-		if len(cnt) > maxWidth {
-			cnt = Aligning68(cnt, maxWidth, 4)
-
+		if len(cnt+words[i]) > maxWidth {
+			res = append(res, Aligning68(cnt, maxWidth, 4))
+			cnt = ""
 		}
-		res = append(res, cnt)
-		cnt = words[i] + " "
+		cnt += words[i] + " "
 	}
-
+	if cnt != "" {
+		res = append(res, Aligning68(cnt, maxWidth, 3))
+	}
 	return res
 }
 
 // Aligning68 对齐 direction: 1 右对齐 2 居中对齐 3 左对齐 4: 两端对齐
 func Aligning68(s string, maxWidth, direction int) string {
-	strList := strings.Split(s, " ")
-	sum := maxWidth - len(strings.Replace(s, " ", "", -1))
-	wordLen := len(strList)
-	ans := ""
+	sLen := make([]string, 0)
+	for _, v := range strings.Split(s, " ") {
+		if v == "" {
+			continue
+		}
+		sLen = append(sLen, v)
+	}
+	sum := maxWidth - len(strings.Join(sLen, ""))
+	wordLen := len(sLen) - 1
 
+	if wordLen == 0 {
+		direction = 3
+	}
+
+	ans := ""
 	switch direction {
 	case 1: // 右对齐
 	case 2: // 居中对齐
 	case 3: // 左对齐
-	case 4: // 两端对齐
-		for i := range strList {
-			ans += strList[i]
+
+		for i := range sLen {
+			ans += sLen[i]
 			if len(ans) == maxWidth {
 				continue
 			}
+			ans += " "
+		}
 
-			ans += strings.Repeat(" ", sum/(wordLen-1))
+		ans += strings.Repeat(" ", maxWidth-len(ans))
+		return ans
+
+	case 4: // 两端对齐
+		for i := range sLen {
+			ans += sLen[i]
+			if len(ans) == maxWidth {
+				continue
+			}
+			ans += strings.Repeat(" ", sum/wordLen)
 			if sum%wordLen > 0 {
 				ans += " "
 				sum--
 			}
-
 		}
 		return ans
 
